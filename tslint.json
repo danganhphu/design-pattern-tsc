@@ -1,0 +1,10 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint-config-airbnb"],
+  "rules": {
+    "quotemark": [true, "single", "avoid-escape"],
+    "semicolon": [true, "always"],
+    "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
+    "no-console": false
+  }
+}
