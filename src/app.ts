@@ -1,1 +1,1 @@
-console.log(‘Design patterns in typescript’)
+console.log("Design patterns in typescript");
