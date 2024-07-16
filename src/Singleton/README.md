@@ -3,15 +3,16 @@
 ## Giới thiệu
 
 Singleton là một Design Pattern thuộc nhóm Creational Pattern. Nó đảm bảo chỉ duy nhất một thể hiện của một lớp được tạo ra trong suốt chương trình.
+
 ### Đặt vấn đề
 
 Trong nhiều trường hợp, cần đảm bảo chỉ có một thể hiện của một lớp. Ví dụ trong hệ thống quản lý người dùng, chỉ nên có duy nhất một đối tượng UserManager để quản lý người dùng.
 
 Nếu tạo nhiều đối tượng UserManager có thể dẫn đến:
 
-- Dữ liệu bị trùng lặp
-- Xung đột tài nguyên
-- Khó kiểm soát
+-   Dữ liệu bị trùng lặp
+-   Xung đột tài nguyên
+-   Khó kiểm soát
 
 ```mermaid
 graph TD
@@ -54,10 +55,10 @@ graph TD
 
 Giải thích:
 
-- Lớp UserManager được triển khai Singleton
-- Chỉ có DUY NHẤT một đối tượng UserManager trong hệ thống
-- Quản lý tất cả người dùng một cách tập trung
-- Tránh được các vấn đề như dữ liệu trùng lặp, xung đột tài nguyên, khó kiểm soát
+-   Lớp UserManager được triển khai Singleton
+-   Chỉ có DUY NHẤT một đối tượng UserManager trong hệ thống
+-   Quản lý tất cả người dùng một cách tập trung
+-   Tránh được các vấn đề như dữ liệu trùng lặp, xung đột tài nguyên, khó kiểm soát
 
 Với cách triển khai này, chỉ có một đối tượng UserManager duy nhất được tạo ra, và đối tượng này có thể được truy cập từ bất kỳ nơi nào trong chương trình.
 
@@ -82,15 +83,14 @@ classDiagram
     Singleton ..> Singleton : return instance
 ```
 
-- Lớp Singleton: Lớp này chứa các phương thức và biến cần thiết để triển khai Singleton Pattern.
-- Phương thức khởi tạo private: Phương thức này chỉ có thể được gọi từ bên trong lớp.
-- Biến static private: Biến này giữ đối tượng của lớp.
-- Phương thức static public để trả về đối tượng của lớp: Phương thức này trả về đối tượng của lớp.
-
+-   Lớp Singleton: Lớp này chứa các phương thức và biến cần thiết để triển khai Singleton Pattern.
+-   Phương thức khởi tạo private: Phương thức này chỉ có thể được gọi từ bên trong lớp.
+-   Biến static private: Biến này giữ đối tượng của lớp.
+-   Phương thức static public để trả về đối tượng của lớp: Phương thức này trả về đối tượng của lớp.
 
 ## Cách triển khai
 
-Có nhiều cách để triển khai Singleton Pattern trong Java. Một cách phổ biến là sử dụng một biến static private để lưu trữ instance của class.
+Có nhiều cách để triển khai Singleton Pattern. Một cách phổ biến là sử dụng một biến static private để lưu trữ instance của class.
 
 ```typescript
 class Singleton {
@@ -100,7 +100,7 @@ class Singleton {
         // Constructor is private to prevent direct instantiation
     }
 
-    public static getInstance(): Singleton {
+    public static get getInstance(): Singleton {
         if (!Singleton.instance) {
             Singleton.instance = new Singleton();
         }
@@ -121,7 +121,7 @@ class Singleton {
         // Constructor is private to prevent direct instantiation
     }
 
-    public static getInstance(): Singleton {
+    public static get getInstance(): Singleton {
         return Singleton.instance;
     }
 }
@@ -131,7 +131,6 @@ Cách triển khai này tương tự như cách triển khai đầu tiên, nhưn
 
 - Sử dụng biến static final private sẽ ngăn chặn việc thay đổi giá trị của biến instance.
 - Cấu trúc code sẽ gọn gàng hơn.
-
 
 ## Ví dụ minh họa
 
@@ -143,7 +142,7 @@ class DatabaseConnection {
 
     private constructor() {
         // Connect to database
-        console.log('Database connected');
+        console.log("Database connected");
     }
 
     public static getInstance(): DatabaseConnection {
