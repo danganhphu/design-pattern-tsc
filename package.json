@@ -23,7 +23,6 @@
     "typescript": "^5.5.3"
   },
   "scripts": {
-    "dev": "tsx watch src/app.ts",
     "start": "tsx src/app.ts",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",

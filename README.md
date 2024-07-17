@@ -6,7 +6,7 @@ For simplicity reasons, the examples are console apps. In order to launch them, 
 
 ```
 yarn global add typescript
-yarn global add ts-node
+yarn install
 ```
 
 When you have all the required software installed, the examples can be launched via the command line as follows:
