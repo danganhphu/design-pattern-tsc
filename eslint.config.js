@@ -4,7 +4,7 @@ import typescriptParser from '@typescript-eslint/parser';
 export default [
   {
     files: ['src/**/*.{js,jsx,ts,tsx}'],
-    ignores: ['node_modules/', 'dist/', 'build/', 'yarn.lock', 'package-lock.json', '.prettierrc.yml'],
+    ignores: ['node_modules/', 'dist/', 'build/', 'yarn.lock', 'package-lock.json', '.prettierrc.yml', '**/*.md'],
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {

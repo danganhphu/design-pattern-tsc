@@ -3,12 +3,6 @@
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
-# Skip commit hooks for Markdown files
-if git diff --cached --name-only | grep -q '\.md$'; then
-  echo "Skipping pre-commit hook for Markdown files"
-  exit 0
-fi
-
 # Check Prettier standards
 yarn check-format ||
 (
