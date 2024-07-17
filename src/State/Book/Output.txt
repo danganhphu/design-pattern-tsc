@@ -1,5 +1,0 @@
-Rendering the document in Draft state
-Moving the document to Moderation state
-Making the document public in Published state
-Rendering the document in Published state
-The document is already in Published state. Nothing to do.
