@@ -1,6 +1,7 @@
 import * as readline from 'readline';
-import { StatePattern } from './State/index';
-import { SingletonPattern } from './Singleton/index';
+import { StatePattern } from '@/State/index';
+import { SingletonPattern } from '@/Singleton/index';
+import { FactoryMethodPattern } from '@/FactoryMethod/index';
 
 function printMenu(): void {
   const menu = `= Creational Patterns == 
@@ -52,7 +53,9 @@ function menu(): void {
         show(SingletonPattern);
         break;
       // case 2 : show(AbstractFactoryPattern); break;
-      // case 3 : show(FactoryMethodPattern); break;
+      case 3:
+        show(FactoryMethodPattern);
+        break;
       // case 4 : show(BuilderPattern); break;
       // case 5 : show(PrototypePattern); break;
       // case 6 : show(AdapterPattern); break;
