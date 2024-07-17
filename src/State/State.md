@@ -6,11 +6,11 @@
 
 ### Tổng quan
 
--   **Định Nghĩa của Pattern:** State Pattern bao gồm đối tượng 'Context' (môi trường hoặc ngữ cảnh sử dụng) và một tập hợp các đối tượng 'State' (trạng thái). 'Context' giữ một tham chiếu tới một 'State' hiện tại và có thể thay đổi tham chiếu này để chuyển đổi giữa các trạng thái khác nhau. Các 'State' biết cách xử lý các yêu cầu từ 'Context', và mỗi 'State' cung cấp hành vi cụ thể phù hợp với trạng thái của 'Context'.
+- **Định Nghĩa của Pattern:** State Pattern bao gồm đối tượng 'Context' (môi trường hoặc ngữ cảnh sử dụng) và một tập hợp các đối tượng 'State' (trạng thái). 'Context' giữ một tham chiếu tới một 'State' hiện tại và có thể thay đổi tham chiếu này để chuyển đổi giữa các trạng thái khác nhau. Các 'State' biết cách xử lý các yêu cầu từ 'Context', và mỗi 'State' cung cấp hành vi cụ thể phù hợp với trạng thái của 'Context'.
 
--   **Mục Đích:** Mục đích của State Pattern là giúp quản lý và cơ cấu lại mã nguồn liên quan đến các quyết định điều khiển dựa trên trạng thái, bằng cách tách biệt hành vi liên quan đến trạng thái cụ thể ra khỏi 'Context'. Điều này giúp giảm sự phức tạp và tăng tính mô-đun của mã nguồn, cũng như dễ dàng thêm mới hoặc sửa đổi các trạng thái mà không ảnh hưởng đến 'Context'.
+- **Mục Đích:** Mục đích của State Pattern là giúp quản lý và cơ cấu lại mã nguồn liên quan đến các quyết định điều khiển dựa trên trạng thái, bằng cách tách biệt hành vi liên quan đến trạng thái cụ thể ra khỏi 'Context'. Điều này giúp giảm sự phức tạp và tăng tính mô-đun của mã nguồn, cũng như dễ dàng thêm mới hoặc sửa đổi các trạng thái mà không ảnh hưởng đến 'Context'.
 
--   **Ý Tưởng Cốt Lõi:** Ý tưởng cốt lõi của State Pattern là "đóng gói sự thay đổi". Bằng cách sử dụng các đối tượng 'State' để đại diện cho các trạng thái khác nhau và cho phép 'Context' thay đổi trạng thái của mình, hệ thống có thể thay đổi hành vi một cách linh hoạt theo trạng thái mà không cần phải viết các câu lệnh điều kiện phức tạp. Điều này giúp mã nguồn trở nên dễ hiểu, dễ bảo trì và mở rộng hơn.
+- **Ý Tưởng Cốt Lõi:** Ý tưởng cốt lõi của State Pattern là "đóng gói sự thay đổi". Bằng cách sử dụng các đối tượng 'State' để đại diện cho các trạng thái khác nhau và cho phép 'Context' thay đổi trạng thái của mình, hệ thống có thể thay đổi hành vi một cách linh hoạt theo trạng thái mà không cần phải viết các câu lệnh điều kiện phức tạp. Điều này giúp mã nguồn trở nên dễ hiểu, dễ bảo trì và mở rộng hơn.
 
 ## Đặt vấn đề
 
@@ -75,9 +75,9 @@ classDiagram
 
 Trong sơ đồ này:
 
--   `Context` là lớp môi trường chứa một thể hiện của các trạng thái khác nhau (`State`).
--   `State` là lớp trừu tượng hoặc interface định nghĩa phương thức `handle()` mà mỗi trạng thái cụ thể (`ConcreteStateA`, `ConcreteStateB`) sẽ triển khai.
--   `ConcreteStateA` và `ConcreteStateB` là các lớp cụ thể triển khai các hành vi khác nhau tương ứng với từng trạng thái của `Context`.
+- `Context` là lớp môi trường chứa một thể hiện của các trạng thái khác nhau (`State`).
+- `State` là lớp trừu tượng hoặc interface định nghĩa phương thức `handle()` mà mỗi trạng thái cụ thể (`ConcreteStateA`, `ConcreteStateB`) sẽ triển khai.
+- `ConcreteStateA` và `ConcreteStateB` là các lớp cụ thể triển khai các hành vi khác nhau tương ứng với từng trạng thái của `Context`.
 
 Dường như có một sự nhầm lẫn ở đây. Bạn đã cung cấp cấu trúc và mã nguồn cho Observer Pattern nhưng bạn muốn biết về State Pattern. Dưới đây là cách triển khai State Pattern bằng Java:
 
@@ -91,7 +91,7 @@ Dường như có một sự nhầm lẫn ở đây. Bạn đã cung cấp cấu
 
 ```typescript
 interface State {
-    handleRequest(): void;
+  handleRequest(): void;
 }
 ```
 
@@ -101,15 +101,15 @@ Các lớp này cài đặt các hành động cụ thể cho một trạng thá
 
 ```typescript
 class ConcreteStateA implements State {
-    handleRequest() {
-        console.log("Handling request by ConcreteStateA");
-    }
+  handleRequest() {
+    console.log('Handling request by ConcreteStateA');
+  }
 }
 
 class ConcreteStateB implements State {
-    handleRequest() {
-        console.log("Handling request by ConcreteStateB");
-    }
+  handleRequest() {
+    console.log('Handling request by ConcreteStateB');
+  }
 }
 ```
 
@@ -119,19 +119,19 @@ Lớp này duy trì một tham chiếu đến một đối tượng State và ch
 
 ```typescript
 class Context {
-    private state: State;
+  private state: State;
 
-    constructor(state: State) {
-        this.state = state;
-    }
+  constructor(state: State) {
+    this.state = state;
+  }
 
-    setState(state: State) {
-        this.state = state;
-    }
+  setState(state: State) {
+    this.state = state;
+  }
 
-    request() {
-        this.state.handleRequest();
-    }
+  request() {
+    this.state.handleRequest();
+  }
 }
 ```
 
@@ -141,18 +141,18 @@ class Context {
 
 ```typescript
 class StatePatternDemo {
-    public static main() {
-        let context = new Context(new ConcreteStateA());
+  public static main() {
+    let context = new Context(new ConcreteStateA());
 
-        // The context is in ConcreteStateA.
-        context.request(); // Handling request by ConcreteStateA
+    // The context is in ConcreteStateA.
+    context.request(); // Handling request by ConcreteStateA
 
-        // Change state to ConcreteStateB
-        context.setState(new ConcreteStateB());
+    // Change state to ConcreteStateB
+    context.setState(new ConcreteStateB());
 
-        // Now the context is in ConcreteStateB.
-        context.request(); // Handling request by ConcreteStateB
-    }
+    // Now the context is in ConcreteStateB.
+    context.request(); // Handling request by ConcreteStateB
+  }
 }
 
 // Running the demo
@@ -163,115 +163,113 @@ StatePatternDemo.main();
 
 ```typescript
 interface OrderState {
-    proceed(order: Order): void;
+  proceed(order: Order): void;
 }
 
 // Concrete States
 class NewState implements OrderState {
-    proceed(order: Order) {
-        console.log("Order is in new state, preparing for shipment.");
-        order.setState(new ShippedState());
-    }
+  proceed(order: Order) {
+    console.log('Order is in new state, preparing for shipment.');
+    order.setState(new ShippedState());
+  }
 }
 
 class ShippedState implements OrderState {
-    proceed(order: Order) {
-        console.log("Order is shipped, updating inventory.");
-        order.setState(new CompletedState());
-    }
+  proceed(order: Order) {
+    console.log('Order is shipped, updating inventory.');
+    order.setState(new CompletedState());
+  }
 }
 
 class CompletedState implements OrderState {
-    proceed(order: Order) {
-        console.log("Order is completed, generating invoice.");
-        // Order completion logic here
-    }
+  proceed(order: Order) {
+    console.log('Order is completed, generating invoice.');
+    // Order completion logic here
+  }
 }
 
 // Context class
 class Order {
-    private state: OrderState;
-    private observers: Observer[] = [];
+  private state: OrderState;
+  private observers: Observer[] = [];
 
-    constructor(state: OrderState) {
-        this.state = state;
-    }
+  constructor(state: OrderState) {
+    this.state = state;
+  }
 
-    setState(state: OrderState) {
-        this.state = state;
-        this.notifyObservers();
-    }
+  setState(state: OrderState) {
+    this.state = state;
+    this.notifyObservers();
+  }
 
-    getState() {
-        return this.state;
-    }
+  getState() {
+    return this.state;
+  }
 
-    proceed() {
-        this.state.proceed(this);
-    }
+  proceed() {
+    this.state.proceed(this);
+  }
 
-    registerObserver(observer: Observer) {
-        this.observers.push(observer);
-    }
+  registerObserver(observer: Observer) {
+    this.observers.push(observer);
+  }
 
-    unregisterObserver(observer: Observer) {
-        this.observers = this.observers.filter((obs) => obs !== observer);
-    }
+  unregisterObserver(observer: Observer) {
+    this.observers = this.observers.filter((obs) => obs !== observer);
+  }
 
-    notifyObservers() {
-        this.observers.forEach((observer) => observer.update(this));
-    }
+  notifyObservers() {
+    this.observers.forEach((observer) => observer.update(this));
+  }
 }
 
 // Observer interface
 interface Observer {
-    update(order: Order): void;
+  update(order: Order): void;
 }
 
 // Concrete Observers
 class InventorySystem implements Observer {
-    update(order: Order) {
-        if (order.getState() instanceof ShippedState) {
-            console.log("Inventory System: Order shipped, updating inventory.");
-        }
+  update(order: Order) {
+    if (order.getState() instanceof ShippedState) {
+      console.log('Inventory System: Order shipped, updating inventory.');
     }
+  }
 }
 
 class ShippingSystem implements Observer {
-    update(order: Order) {
-        if (order.getState() instanceof NewState) {
-            console.log(
-                "Shipping System: New order received, preparing for shipment."
-            );
-        }
+  update(order: Order) {
+    if (order.getState() instanceof NewState) {
+      console.log('Shipping System: New order received, preparing for shipment.');
     }
+  }
 }
 
 class BillingSystem implements Observer {
-    update(order: Order) {
-        if (order.getState() instanceof CompletedState) {
-            console.log("Billing System: Order completed, generating invoice.");
-        }
+  update(order: Order) {
+    if (order.getState() instanceof CompletedState) {
+      console.log('Billing System: Order completed, generating invoice.');
     }
+  }
 }
 
 // State Pattern Demo
 class StatePatternDemoExtended {
-    public static main() {
-        let order = new Order(new NewState());
+  public static main() {
+    let order = new Order(new NewState());
 
-        let inventorySystem = new InventorySystem();
-        let shippingSystem = new ShippingSystem();
-        let billingSystem = new BillingSystem();
+    let inventorySystem = new InventorySystem();
+    let shippingSystem = new ShippingSystem();
+    let billingSystem = new BillingSystem();
 
-        order.registerObserver(inventorySystem);
-        order.registerObserver(shippingSystem);
-        order.registerObserver(billingSystem);
+    order.registerObserver(inventorySystem);
+    order.registerObserver(shippingSystem);
+    order.registerObserver(billingSystem);
 
-        // Simulate order updates
-        order.proceed(); // New to Shipped
-        order.proceed(); // Shipped to Completed
-    }
+    // Simulate order updates
+    order.proceed(); // New to Shipped
+    order.proceed(); // Shipped to Completed
+  }
 }
 
 // Running the extended demo
@@ -282,12 +280,12 @@ Trong ví dụ này, `Order` chứa một trạng thái (`OrderState`), và các
 
 ## Khi nào nên sử dụng State Pattern
 
--   **Khi hành vi của đối tượng thay đổi tùy thuộc vào trạng thái của nó**: State Pattern là lựa chọn lý tưởng khi bạn muốn hành vi của một đối tượng thay đổi dựa trên trạng thái nội bộ của nó. Điều này giúp mã nguồn dễ đọc và dễ bảo trì hơn bằng cách ngăn chặn các điều kiện rẽ nhánh phức tạp và liên tục.
+- **Khi hành vi của đối tượng thay đổi tùy thuộc vào trạng thái của nó**: State Pattern là lựa chọn lý tưởng khi bạn muốn hành vi của một đối tượng thay đổi dựa trên trạng thái nội bộ của nó. Điều này giúp mã nguồn dễ đọc và dễ bảo trì hơn bằng cách ngăn chặn các điều kiện rẽ nhánh phức tạp và liên tục.
 
--   **Khi bạn muốn tránh mã lệnh rắc rối với nhiều điều kiện**: State Pattern giúp loại bỏ sự phụ thuộc vào các câu lệnh điều kiện dài và phức tạp bằng cách chuyển trạng thái của đối tượng vào các lớp trạng thái riêng biệt. Điều này làm cho mã nguồn trở nên sạch sẽ và dễ quản lý hơn.
+- **Khi bạn muốn tránh mã lệnh rắc rối với nhiều điều kiện**: State Pattern giúp loại bỏ sự phụ thuộc vào các câu lệnh điều kiện dài và phức tạp bằng cách chuyển trạng thái của đối tượng vào các lớp trạng thái riêng biệt. Điều này làm cho mã nguồn trở nên sạch sẽ và dễ quản lý hơn.
 
--   **Trong các ứng dụng cần mô phỏng máy trạng thái**: State Pattern là lựa chọn tốt cho các ứng dụng mô phỏng máy trạng thái, như các trò chơi điện tử, các ứng dụng quản lý trạng thái đối tượng, hoặc bất kỳ hệ thống nào mà đối tượng có thể chuyển đổi qua lại giữa nhiều trạng thái khác nhau.
+- **Trong các ứng dụng cần mô phỏng máy trạng thái**: State Pattern là lựa chọn tốt cho các ứng dụng mô phỏng máy trạng thái, như các trò chơi điện tử, các ứng dụng quản lý trạng thái đối tượng, hoặc bất kỳ hệ thống nào mà đối tượng có thể chuyển đổi qua lại giữa nhiều trạng thái khác nhau.
 
--   **Khi bạn muốn mã nguồn dễ mở rộng và bảo trì**: State Pattern giúp việc thêm mới trạng thái hoặc thay đổi hành vi của trạng thái trở nên dễ dàng hơn mà không cần sửa đổi mã nguồn hiện có. Điều này làm cho mã nguồn dễ mở rộng và dễ bảo trì hơn.
+- **Khi bạn muốn mã nguồn dễ mở rộng và bảo trì**: State Pattern giúp việc thêm mới trạng thái hoặc thay đổi hành vi của trạng thái trở nên dễ dàng hơn mà không cần sửa đổi mã nguồn hiện có. Điều này làm cho mã nguồn dễ mở rộng và dễ bảo trì hơn.
 
--   **Khi cần tách rời quá trình thay đổi trạng thái khỏi lớp đối tượng chính**: Sử dụng State Pattern giúp tách biệt quá trình thay đổi trạng thái ra khỏi lớp đối tượng chính, giúp giảm sự phức tạp và tăng tính mô-đun. Điều này cho phép phát triển và thử nghiệm các trạng thái một cách độc lập, giúp cải thiện chất lượng mã nguồn và giảm thiểu lỗi.
+- **Khi cần tách rời quá trình thay đổi trạng thái khỏi lớp đối tượng chính**: Sử dụng State Pattern giúp tách biệt quá trình thay đổi trạng thái ra khỏi lớp đối tượng chính, giúp giảm sự phức tạp và tăng tính mô-đun. Điều này cho phép phát triển và thử nghiệm các trạng thái một cách độc lập, giúp cải thiện chất lượng mã nguồn và giảm thiểu lỗi.

@@ -12,47 +12,47 @@
  */
 
 class Logger {
-    private static instance: Logger;
-    private readonly entries: string[] = [];
+  private static instance: Logger;
+  private readonly entries: string[] = [];
 
-    private constructor() {}
+  private constructor() {}
 
-    public static getInstance(): Logger {
-        if (!Logger.instance) {
-            Logger.instance = new Logger();
-        }
-        return Logger.instance;
+  public static getInstance(): Logger {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
     }
+    return Logger.instance;
+  }
 
-    //Business logic method for adding log entries.
-    public add(log: string) {
-        this.entries.push(log);
-    }
+  //Business logic method for adding log entries.
+  public add(log: string) {
+    this.entries.push(log);
+  }
 
-    // Method to display all log entries.
-    public displayLogs() {
-        console.log(this.entries.join("\n"));
-    }
+  // Method to display all log entries.
+  public displayLogs() {
+    console.log(this.entries.join('\n'));
+  }
 }
 
 // Usage: Example client code using the Logger singleton.
 
 const clientCode = () => {
-    const logger1 = Logger.getInstance();
-    const logger2 = Logger.getInstance();
+  const logger1 = Logger.getInstance();
+  const logger2 = Logger.getInstance();
 
-    logger1.add("Log entry from logger1.");
-    logger2.add("Log entry from logger2.");
+  logger1.add('Log entry from logger1.');
+  logger2.add('Log entry from logger2.');
 
-    //Since logger1 and logger2 are the same instance, the log entries will be combined.
-    logger1.displayLogs();
+  //Since logger1 and logger2 are the same instance, the log entries will be combined.
+  logger1.displayLogs();
 
-    const result =
-        logger1 == logger2
-            ? "Logger works, both variables contain the same instance."
-            : "Logger failed, variables contain different instances.";
+  const result =
+    logger1 == logger2
+      ? 'Logger works, both variables contain the same instance.'
+      : 'Logger failed, variables contain different instances.';
 
-    console.log(result);
+  console.log(result);
 };
 
 clientCode();

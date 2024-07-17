@@ -10,9 +10,9 @@ Trong nhiều trường hợp, cần đảm bảo chỉ có một thể hiện c
 
 Nếu tạo nhiều đối tượng UserManager có thể dẫn đến:
 
--   Dữ liệu bị trùng lặp
--   Xung đột tài nguyên
--   Khó kiểm soát
+- Dữ liệu bị trùng lặp
+- Xung đột tài nguyên
+- Khó kiểm soát
 
 ```mermaid
 graph TD
@@ -55,10 +55,10 @@ graph TD
 
 Giải thích:
 
--   Lớp UserManager được triển khai Singleton
--   Chỉ có DUY NHẤT một đối tượng UserManager trong hệ thống
--   Quản lý tất cả người dùng một cách tập trung
--   Tránh được các vấn đề như dữ liệu trùng lặp, xung đột tài nguyên, khó kiểm soát
+- Lớp UserManager được triển khai Singleton
+- Chỉ có DUY NHẤT một đối tượng UserManager trong hệ thống
+- Quản lý tất cả người dùng một cách tập trung
+- Tránh được các vấn đề như dữ liệu trùng lặp, xung đột tài nguyên, khó kiểm soát
 
 Với cách triển khai này, chỉ có một đối tượng UserManager duy nhất được tạo ra, và đối tượng này có thể được truy cập từ bất kỳ nơi nào trong chương trình.
 
@@ -83,10 +83,10 @@ classDiagram
     Singleton ..> Singleton : return instance
 ```
 
--   Lớp Singleton: Lớp này chứa các phương thức và biến cần thiết để triển khai Singleton Pattern.
--   Phương thức khởi tạo private: Phương thức này chỉ có thể được gọi từ bên trong lớp.
--   Biến static private: Biến này giữ đối tượng của lớp.
--   Phương thức static public để trả về đối tượng của lớp: Phương thức này trả về đối tượng của lớp.
+- Lớp Singleton: Lớp này chứa các phương thức và biến cần thiết để triển khai Singleton Pattern.
+- Phương thức khởi tạo private: Phương thức này chỉ có thể được gọi từ bên trong lớp.
+- Biến static private: Biến này giữ đối tượng của lớp.
+- Phương thức static public để trả về đối tượng của lớp: Phương thức này trả về đối tượng của lớp.
 
 ## Cách triển khai
 
@@ -94,18 +94,18 @@ Có nhiều cách để triển khai Singleton Pattern. Một cách phổ biến
 
 ```typescript
 class Singleton {
-    private static instance: Singleton;
+  private static instance: Singleton;
 
-    private constructor() {
-        // Constructor is private to prevent direct instantiation
-    }
+  private constructor() {
+    // Constructor is private to prevent direct instantiation
+  }
 
-    public static get getInstance(): Singleton {
-        if (!Singleton.instance) {
-            Singleton.instance = new Singleton();
-        }
-        return Singleton.instance;
+  public static get getInstance(): Singleton {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
     }
+    return Singleton.instance;
+  }
 }
 ```
 
@@ -115,15 +115,15 @@ Một cách triển khai khác của Singleton Pattern là sử dụng một bi�
 
 ```typescript
 class Singleton {
-    private static readonly instance: Singleton = new Singleton();
+  private static readonly instance: Singleton = new Singleton();
 
-    private constructor() {
-        // Constructor is private to prevent direct instantiation
-    }
+  private constructor() {
+    // Constructor is private to prevent direct instantiation
+  }
 
-    public static get getInstance(): Singleton {
-        return Singleton.instance;
-    }
+  public static get getInstance(): Singleton {
+    return Singleton.instance;
+  }
 }
 ```
 
@@ -138,21 +138,21 @@ Dưới đây là một ví dụ minh họa cách sử dụng Singleton Pattern 
 
 ```typescript
 class DatabaseConnection {
-    private static readonly instance: DatabaseConnection = new DatabaseConnection();
+  private static readonly instance: DatabaseConnection = new DatabaseConnection();
 
-    private constructor() {
-        // Connect to database
-        console.log("Database connected");
-    }
+  private constructor() {
+    // Connect to database
+    console.log('Database connected');
+  }
 
-    public static getInstance(): DatabaseConnection {
-        return DatabaseConnection.instance;
-    }
+  public static getInstance(): DatabaseConnection {
+    return DatabaseConnection.instance;
+  }
 
-    public query(sql: string): void {
-        // Execute query
-        console.log(`Executing query: ${sql}`);
-    }
+  public query(sql: string): void {
+    // Execute query
+    console.log(`Executing query: ${sql}`);
+  }
 }
 ```
 
@@ -172,7 +172,6 @@ Khi áp dụng Singleton Pattern, cần lưu ý một số điểm sau:
 - Singleton Pattern có thể làm giảm tính linh hoạt của ứng dụng. Ví dụ, nếu bạn cần tạo ra nhiều instance của một class, bạn sẽ cần phải thay đổi code để xóa phương thức getInstance().
 - Singleton Pattern có thể gây ra vấn đề khi test. Ví dụ, nếu bạn đang test một class sử dụng Singleton Pattern, bạn sẽ cần tạo ra một instance giả của class đó.
 
-
 ## Kết luận
 
 Singleton Pattern là một Design Pattern hữu ích trong những trường hợp cần đảm bảo rằng chỉ có một thể hiện duy nhất của một lớp được tạo ra. Tuy nhiên, cần lưu ý những điểm hạn chế của Singleton Pattern khi áp dụng.
@@ -182,4 +181,3 @@ Dưới đây là một số hướng dẫn sử dụng Singleton Pattern:
 - Nên sử dụng Singleton Pattern khi cần đảm bảo rằng chỉ có một thể hiện duy nhất của một lớp được tạo ra.
 - Tránh sử dụng Singleton Pattern khi không cần thiết.
 - Hạn chế sử dụng Singleton trong các hệ thống lớn hoặc phức tạp.
-
