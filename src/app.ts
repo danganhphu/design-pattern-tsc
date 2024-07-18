@@ -1,7 +1,18 @@
 import * as readline from 'readline';
-import { StatePattern } from '@/State/index';
-import { SingletonPattern } from '@/Singleton/index';
-import { FactoryMethodPattern } from '@/FactoryMethod/index';
+import { statePattern } from '@/State';
+import { singletonPattern } from '@/Singleton';
+import { factoryMethodPattern } from '@/FactoryMethod';
+import { abstractFactoryPattern } from '@/AbstractFactory';
+import { builderPattern } from '@/Builder';
+import { prototypePattern } from '@/Prototype';
+import { adapterPattern } from '@/Adapter';
+import { bridgePattern } from '@/Bridge';
+import { compositePattern } from '@/Composite';
+import { decoratorPattern } from '@/Decorator';
+import { facadePattern } from '@/Facade';
+import { flyweightPattern } from '@/Flyweight';
+import { proxyPattern } from '@/Proxy';
+import { chainOfResponsibilityPattern } from '@/ChainOfResponsibility';
 
 function printMenu(): void {
   const menu = `= Creational Patterns == 
@@ -50,22 +61,44 @@ function menu(): void {
   rl.question('Which pattern would you like to check?   ', function (answer) {
     switch (+answer) {
       case 1:
-        show(SingletonPattern);
+        show(singletonPattern);
         break;
-      // case 2 : show(AbstractFactoryPattern); break;
+      case 2:
+        show(abstractFactoryPattern);
+        break;
       case 3:
-        show(FactoryMethodPattern);
+        show(factoryMethodPattern);
         break;
-      // case 4 : show(BuilderPattern); break;
-      // case 5 : show(PrototypePattern); break;
-      // case 6 : show(AdapterPattern); break;
-      // case 7 : show(BridgePattern); break;
-      // case 8 : show(CompositePattern); break;
-      // case 9 : show(DecoratorPattern); break;
-      // case 10 : show(FacadePattern); break;
-      // case 11 : show(FlyweightPattern); break;
-      // case 12 : show(ProxyPattern); break;
-      // case 13 : show(ChainOfResponsibilityPattern); break;
+      case 4:
+        show(builderPattern);
+        break;
+      case 5:
+        show(prototypePattern);
+        break;
+      case 6:
+        show(adapterPattern);
+        break;
+      case 7:
+        show(bridgePattern);
+        break;
+      case 8:
+        show(compositePattern);
+        break;
+      case 9:
+        show(decoratorPattern);
+        break;
+      case 10:
+        show(facadePattern);
+        break;
+      case 11:
+        show(flyweightPattern);
+        break;
+      case 12:
+        show(proxyPattern);
+        break;
+      case 13:
+        show(chainOfResponsibilityPattern);
+        break;
       // case 14 : show(CommandPattern); break;
       // case 15 : show(InterpreterPattern); break;
       // case 16 : show(IteratorPattern); break;
@@ -73,7 +106,7 @@ function menu(): void {
       // case 18 : show(MementoPattern); break;
       // case 19 : show(ObserverPattern); break;
       case 20:
-        show(StatePattern);
+        show(statePattern);
         break;
       // case 21 : show(StrategyPattern); break;
       // case 22 : show(TemplateMethodPattern); break;
@@ -85,8 +118,8 @@ function menu(): void {
   });
 }
 
-function show(Pattern: any): void {
-  Pattern.show();
+function show(patternShowFunction: () => void): void {
+  patternShowFunction();
 }
 
 menu();
