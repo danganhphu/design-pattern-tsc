@@ -1,21 +1,65 @@
-import * as readline from 'readline';
-import { statePattern } from '@/State';
-import { singletonPattern } from '@/Singleton';
-import { factoryMethodPattern } from '@/FactoryMethod';
-import { abstractFactoryPattern } from '@/AbstractFactory';
-import { builderPattern } from '@/Builder';
-import { prototypePattern } from '@/Prototype';
-import { adapterPattern } from '@/Adapter';
-import { bridgePattern } from '@/Bridge';
-import { compositePattern } from '@/Composite';
-import { decoratorPattern } from '@/Decorator';
-import { facadePattern } from '@/Facade';
-import { flyweightPattern } from '@/Flyweight';
-import { proxyPattern } from '@/Proxy';
-import { chainOfResponsibilityPattern } from '@/ChainOfResponsibility';
+import prompts from 'prompts';
+import {
+  ChainOfResponsibilityPattern,
+  CommandPattern,
+  InterpreterPattern,
+  IteratorPattern,
+  MediatorPattern,
+  MementoPattern,
+  ObserverPattern,
+  StatePattern,
+  StrategyPattern,
+  TemplateMethodPattern,
+  VisitorPattern
+} from '@/BehavioralPatterns';
+import {
+  AbstractFactoryPattern,
+  BuilderPattern,
+  FactoryMethodPattern,
+  PrototypePattern,
+  SingletonPattern
+} from '@/CreationalPatterns';
+import {
+  AdapterPattern,
+  BridgePattern,
+  CompositePattern,
+  DecoratorPattern,
+  FacadePattern,
+  FlyweightPattern,
+  ProxyPattern
+} from '@/StructuralPatterns';
 
-function printMenu(): void {
-  const menu = `= Creational Patterns == 
+type PatternFunction = () => void;
+
+const patterns: Record<number, PatternFunction> = {
+  1: SingletonPattern,
+  2: AbstractFactoryPattern,
+  3: FactoryMethodPattern,
+  4: BuilderPattern,
+  5: PrototypePattern,
+  6: AdapterPattern,
+  7: BridgePattern,
+  8: CompositePattern,
+  9: DecoratorPattern,
+  10: FacadePattern,
+  11: FlyweightPattern,
+  12: ProxyPattern,
+  13: ChainOfResponsibilityPattern,
+  14: CommandPattern,
+  15: InterpreterPattern,
+  16: IteratorPattern,
+  17: MediatorPattern,
+  18: MementoPattern,
+  19: ObserverPattern,
+  20: StatePattern,
+  21: StrategyPattern,
+  22: TemplateMethodPattern,
+  23: VisitorPattern
+};
+
+async function mainMenu() {
+  const menu = `
+= Creational Patterns == 
   1: Singleton 
   2: Abstract factory 
   3: Factory method 
@@ -43,83 +87,45 @@ function printMenu(): void {
  21: Strategy 
  22: Template method 
  23: Visitor 
+
+Press 'q' to exit.
 `;
 
-  console.log('\n');
-  console.log('==== Choose one pattern to demonstrate ====');
-  console.log('\n');
+  console.log('\n==== Choose one pattern to demonstrate ====\n');
   console.log(menu);
-}
 
-function menu(): void {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+  while (true) {
+    const response: { choice: string } = await prompts({
+      type: 'text',
+      name: 'choice',
+      message: "Which pattern would you like to check? (or press 'q' to exit)"
+    });
 
-  printMenu();
-  rl.question('Which pattern would you like to check?   ', function (answer) {
-    switch (+answer) {
-      case 1:
-        show(singletonPattern);
-        break;
-      case 2:
-        show(abstractFactoryPattern);
-        break;
-      case 3:
-        show(factoryMethodPattern);
-        break;
-      case 4:
-        show(builderPattern);
-        break;
-      case 5:
-        show(prototypePattern);
-        break;
-      case 6:
-        show(adapterPattern);
-        break;
-      case 7:
-        show(bridgePattern);
-        break;
-      case 8:
-        show(compositePattern);
-        break;
-      case 9:
-        show(decoratorPattern);
-        break;
-      case 10:
-        show(facadePattern);
-        break;
-      case 11:
-        show(flyweightPattern);
-        break;
-      case 12:
-        show(proxyPattern);
-        break;
-      case 13:
-        show(chainOfResponsibilityPattern);
-        break;
-      // case 14 : show(CommandPattern); break;
-      // case 15 : show(InterpreterPattern); break;
-      // case 16 : show(IteratorPattern); break;
-      // case 17 : show(MediatorPattern); break;
-      // case 18 : show(MementoPattern); break;
-      // case 19 : show(ObserverPattern); break;
-      case 20:
-        show(statePattern);
-        break;
-      // case 21 : show(StrategyPattern); break;
-      // case 22 : show(TemplateMethodPattern); break;
-      // case 23 : show(VisitorPattern); break;
-      default:
-        break;
+    const choice = response.choice.trim().toLowerCase();
+    if (choice === 'q') {
+      console.log('Exiting...');
+      process.exit(0);
     }
-    rl.close();
-  });
+
+    const patternNumber = parseInt(choice, 10);
+    if (patterns[patternNumber]) {
+      patterns[patternNumber]();
+      console.log();
+      const continueResponse: { continue: string } = await prompts({
+        type: 'text',
+        name: 'continue',
+        message: 'Press Y (yes) to continue or any other key to exit'
+      });
+
+      if (continueResponse.continue.trim().toLowerCase() !== 'y') {
+        console.log('Exiting...');
+        process.exit(0);
+      }
+    } else {
+      console.log('Invalid choice, please select a valid pattern number.');
+      console.log(menu);
+    }
+  }
 }
 
-function show(patternShowFunction: () => void): void {
-  patternShowFunction();
-}
-
-menu();
+mainMenu();
